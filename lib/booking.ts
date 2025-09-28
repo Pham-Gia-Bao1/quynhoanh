@@ -156,7 +156,8 @@ const MOCK_BOOKINGS: Booking[] = [
 export class BookingService {
   private static readonly STORAGE_KEY = "quynh-oanh-bookings"
 
-  static async createBooking(bookingData: BookingFormData, user?: User): Promise<Booking> {
+  static async createBooking(bookingData: BookingFormData, user?: User | null): Promise<Booking>
+ {
     // Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 1500))
 
