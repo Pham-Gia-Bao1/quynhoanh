@@ -1,6 +1,13 @@
 import Image from "next/image"
 import { Award, Users, Heart, Star } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { Metadata } from "next";
+import { generateBaseMetadata } from "@/lib/metadata";
+export const metadata: Metadata = generateBaseMetadata(
+  "Về chúng tôi - Khách sạn Quỳnh Oanh",
+  "Trải nghiệm sự sang trọng và thoải mái tại Khách sạn Quỳnh Oanh. Dịch vụ đẳng cấp, tiện nghi hiện đại, tọa lạc tại trung tâm Việt Nam."
+);
+
 
 const achievements = [
   {

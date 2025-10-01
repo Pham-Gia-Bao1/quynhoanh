@@ -137,7 +137,7 @@ export function LoginForm() {
           </p>
         </div>
 
-        <div className="mt-6 p-4 bg-muted/50 rounded-lg">
+        {/* <div className="mt-6 p-4 bg-muted/50 rounded-lg">
           <p className="text-sm font-medium mb-2">Tài khoản demo:</p>
           <div className="space-y-1 text-xs text-muted-foreground">
             <p>
@@ -147,7 +147,7 @@ export function LoginForm() {
               <strong>Khách hàng:</strong> customer@example.com / customer123
             </p>
           </div>
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   )

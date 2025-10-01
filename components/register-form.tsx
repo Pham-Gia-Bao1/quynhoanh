@@ -78,9 +78,7 @@ export function RegisterForm() {
 
   return (
     <Card className="shadow-lg border-0 bg-card/50 backdrop-blur-sm">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-serif text-center">Đăng ký</CardTitle>
-      </CardHeader>
+
       <CardContent className="space-y-4">
         {error && (
           <Alert variant="destructive">

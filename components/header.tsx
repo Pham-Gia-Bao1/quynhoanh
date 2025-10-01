@@ -55,9 +55,6 @@ export function Header() {
             <Link href="/rooms" className="text-foreground hover:text-accent transition-colors">
               Phòng
             </Link>
-            <Link href="/amenities" className="text-foreground hover:text-accent transition-colors">
-              Tiện ích
-            </Link>
             <Link href="/about" className="text-foreground hover:text-accent transition-colors">
               Về chúng tôi
             </Link>
@@ -107,9 +104,11 @@ export function Header() {
                 <Link href="/auth/login">
                   <Button variant="ghost">Đăng nhập</Button>
                 </Link>
-                <Link href="/booking">
-                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">Đặt phòng ngay</Button>
+               {/* add register  */}
+                <Link href="/auth/register">
+                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">Đăng ký</Button>
                 </Link>
+                
               </div>
             )}
 
