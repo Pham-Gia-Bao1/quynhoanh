@@ -13,29 +13,9 @@ const amenities = [
     description: "Bãi đỗ xe rộng rãi và an toàn 24/7",
   },
   {
-    icon: Coffee,
-    title: "Quầy bar",
-    description: "Thưởng thức đồ uống cao cấp tại lobby bar",
-  },
-  {
     icon: Utensils,
     title: "Nhà hàng",
     description: "Ẩm thực Việt Nam và quốc tế đa dạng",
-  },
-  {
-    icon: Dumbbell,
-    title: "Phòng gym",
-    description: "Trang thiết bị tập luyện hiện đại",
-  },
-  {
-    icon: Waves,
-    title: "Hồ bơi",
-    description: "Hồ bơi ngoài trời với view tuyệt đẹp",
-  },
-  {
-    icon: Spa,
-    title: "Spa & Massage",
-    description: "Dịch vụ thư giãn và chăm sóc sức khỏe",
   },
   {
     icon: Shield,

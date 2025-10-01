@@ -52,8 +52,6 @@ export function Footer() {
             <ul className="space-y-2 text-primary-foreground/80">
               <li>Đặt phòng online</li>
               <li>Dịch vụ phòng 24/7</li>
-              <li>Spa & Massage</li>
-              <li>Hội nghị & Sự kiện</li>
             </ul>
           </div>
 
@@ -63,7 +61,7 @@ export function Footer() {
             <div className="space-y-3 text-primary-foreground/80">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-accent" />
-                <span className="text-sm">123 Đường ABC, Quận 1, TP.HCM</span>
+                <span className="text-sm">Thôn 2 Thanh Sen, Phong Nha, Quảng Trị</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-accent" />

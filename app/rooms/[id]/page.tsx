@@ -1,45 +1,71 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { RoomDetails } from "@/components/room-details"
-import { notFound } from "next/navigation"
-
-// Sample room data - in a real app this would come from a database
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { RoomDetails } from "@/components/room-details";
+import { notFound } from "next/navigation";
+// Sample room data - Phong Nha Hotel (simple, nature-based, no bar/spa/bathtub)
 const rooms = [
   {
     id: 1,
-    name: "Phòng Superior",
-    price: 650000,
-    originalPrice: 750000,
+    name: "Phòng Standard",
+    price: 500000,
+    originalPrice: 600000,
     images: [
+      "/cozy-standard-room-with-modern-design.jpg",
       "/elegant-hotel-room-with-modern-furniture-and-city-.jpg",
       "/luxury-hotel-lobby-with-elegant-furniture-and-warm.jpg",
-      "/luxury-hotel-deluxe-room-with-balcony-and-premium-.jpg",
     ],
     description:
-      "Phòng Superior được thiết kế trang nhã với đầy đủ tiện nghi hiện đại, mang đến không gian nghỉ ngơi thoải mái và ấm cúng. Phòng có view đẹp ra thành phố và được trang bị các thiết bị cao cấp.",
+      "Phòng Standard nhỏ gọn, tiện nghi cơ bản, view núi thoáng mát. Phù hợp cho khách đi công tác hoặc du lịch ngắn ngày tại Phong Nha.",
     amenities: [
-      "Wifi miễn phí tốc độ cao",
-      "Điều hòa nhiệt độ thông minh",
-      "TV màn hình phẳng 43 inch",
-      "Minibar đầy đủ đồ uống",
-      "Két an toàn điện tử",
-      "Máy sấy tóc cao cấp",
-      "Đồ dùng phòng tắm cao cấp",
+      "Wifi miễn phí",
+      "Điều hòa nhiệt độ",
+      "TV màn hình phẳng",
+      "Két sắt mini",
       "Dịch vụ phòng 24/7",
     ],
-    size: "25m²",
+    size: "20m²",
     maxGuests: 2,
-    bedType: "Giường đôi King Size",
-    rating: 4.5,
-    reviews: 128,
+    bedType: "Giường đôi",
+    rating: 4.3,
+    reviews: 56,
     available: true,
-    floor: "3-8",
-    view: "View thành phố",
+    floor: "2-5",
+    view: "View núi",
     checkInTime: "14:00",
     checkOutTime: "12:00",
   },
   {
     id: 2,
+    name: "Phòng Superior",
+    price: 650000,
+    originalPrice: 750000,
+    images: [
+      "/elegant-hotel-room-with-modern-furniture-and-city-.jpg",
+      "/luxury-hotel-deluxe-room-with-balcony-and-premium-.jpg",
+      "/luxury-hotel-lobby-with-elegant-furniture-and-warm.jpg",
+    ],
+    description:
+      "Phòng Superior với thiết kế trang nhã, đầy đủ tiện nghi. View hướng sông Son thơ mộng, lý tưởng cho du khách nghỉ ngơi sau hành trình khám phá động Thiên Đường.",
+    amenities: [
+      "Wifi miễn phí",
+      "Điều hòa",
+      "TV màn hình phẳng",
+      "Minibar",
+      "Két an toàn",
+    ],
+    size: "25m²",
+    maxGuests: 2,
+    bedType: "Giường đôi",
+    rating: 4.5,
+    reviews: 128,
+    available: true,
+    floor: "3-8",
+    view: "View sông Son",
+    checkInTime: "14:00",
+    checkOutTime: "12:00",
+  },
+  {
+    id: 3,
     name: "Phòng Deluxe",
     price: 900000,
     originalPrice: 1050000,
@@ -49,32 +75,57 @@ const rooms = [
       "/luxury-hotel-lobby-with-elegant-furniture-and-warm.jpg",
     ],
     description:
-      "Phòng Deluxe cao cấp với không gian rộng rãi hơn, ban công riêng và view tuyệt đẹp. Được thiết kế sang trọng với nội thất cao cấp và đầy đủ tiện nghi hiện đại nhất.",
+      "Phòng Deluxe rộng rãi, có ban công riêng nhìn ra núi non hùng vĩ. Không gian thoáng đãng, mang lại trải nghiệm thư giãn tuyệt vời tại Phong Nha.",
     amenities: [
-      "Wifi miễn phí tốc độ cao",
-      "Ban công riêng với view đẹp",
-      "Bồn tắm và vòi sen riêng biệt",
-      "Dịch vụ phòng cao cấp",
-      "Máy pha cà phê Nespresso",
-      "Tủ lạnh mini đầy đủ",
-      "Két an toàn lớn",
-      "Áo choàng tắm cao cấp",
-      "Dép đi trong phòng",
-      "Máy là và bàn là",
+      "Wifi miễn phí",
+      "Ban công riêng view núi",
+      "Máy pha cà phê",
+      "Điều hòa",
+      "TV màn hình phẳng",
     ],
     size: "35m²",
     maxGuests: 3,
-    bedType: "Giường King Size + Sofa bed",
+    bedType: "Giường King",
     rating: 4.7,
     reviews: 89,
     available: true,
-    floor: "5-12",
-    view: "View thành phố và sông",
+    floor: "5-10",
+    view: "View núi",
     checkInTime: "14:00",
     checkOutTime: "12:00",
   },
   {
-    id: 3,
+    id: 4,
+    name: "Phòng Family",
+    price: 1200000,
+    originalPrice: 1400000,
+    images: [
+      "/family-hotel-room-with-double-beds-and-modern-deco.jpg",
+      "/luxury-hotel-deluxe-room-with-balcony-and-premium-.jpg",
+      "/elegant-hotel-room-with-modern-furniture-and-city-.jpg",
+    ],
+    description:
+      "Phòng Family rộng rãi, có ban công hướng sông Son, thích hợp cho gia đình hoặc nhóm bạn cùng trải nghiệm thiên nhiên Phong Nha.",
+    amenities: [
+      "2 giường đôi",
+      "Wifi miễn phí",
+      "Tủ lạnh lớn",
+      "TV màn hình lớn",
+      "Điều hòa",
+    ],
+    size: "45m²",
+    maxGuests: 6,
+    bedType: "2 giường đôi",
+    rating: 4.8,
+    reviews: 92,
+    available: true,
+    floor: "3-8",
+    view: "View sông Son",
+    checkInTime: "14:00",
+    checkOutTime: "12:00",
+  },
+  {
+    id: 5,
     name: "Phòng Suite",
     price: 1800000,
     originalPrice: 2100000,
@@ -84,59 +135,83 @@ const rooms = [
       "/elegant-hotel-room-with-modern-furniture-and-city-.jpg",
     ],
     description:
-      "Suite sang trọng với phòng khách riêng biệt, phòng ngủ rộng rãi và đầy đủ tiện ích cao cấp nhất. Phù hợp cho khách VIP và những dịp đặc biệt.",
+      "Suite cao cấp với phòng khách riêng, không gian rộng rãi. View toàn cảnh núi đá vôi và sông Son, mang lại sự riêng tư và sang trọng.",
     amenities: [
-      "Phòng khách riêng biệt",
-      "Jacuzzi cao cấp",
-      "Butler service 24/7",
-      "View panorama tuyệt đẹp",
-      "Bếp nhỏ đầy đủ tiện nghi",
-      "Phòng làm việc riêng",
-      "Hệ thống âm thanh cao cấp",
-      "Máy giặt và máy sấy",
-      "Minibar premium",
-      "Dịch vụ limousine",
-      "Late checkout miễn phí",
-      "Breakfast in room",
+      "Phòng khách riêng",
+      "View panorama núi & sông",
+      "Bếp nhỏ",
+      "Wifi miễn phí",
+      "Điều hòa",
     ],
     size: "60m²",
     maxGuests: 4,
-    bedType: "Giường King Size + Phòng khách",
+    bedType: "Giường King + Sofa bed",
     rating: 4.9,
     reviews: 45,
     available: true,
-    floor: "10-15",
-    view: "View panorama 360°",
+    floor: "8-12",
+    view: "View toàn cảnh núi và sông",
     checkInTime: "14:00",
-    checkOutTime: "15:00",
+    checkOutTime: "12:00",
   },
-]
+  {
+    id: 6,
+    name: "Phòng Executive",
+    price: 1500000,
+    originalPrice: 1750000,
+    images: [
+      "/executive-room-with-city-view-and-modern-furniture.jpg",
+      "/luxury-hotel-lobby-with-elegant-furniture-and-warm.jpg",
+      "/elegant-hotel-room-with-modern-furniture-and-city-.jpg",
+    ],
+    description:
+      "Phòng Executive dành cho khách công tác hoặc nghỉ dưỡng cao cấp, có không gian làm việc riêng và tầm nhìn ra núi non Phong Nha.",
+    amenities: [
+      "Phòng làm việc riêng",
+      "Wifi miễn phí",
+      "Bữa sáng miễn phí",
+      "Điều hòa",
+      "Concierge",
+    ],
+    size: "40m²",
+    maxGuests: 2,
+    bedType: "Giường King",
+    rating: 4.7,
+    reviews: 63,
+    available: true,
+    floor: "6-10",
+    view: "View núi",
+    checkInTime: "14:00",
+    checkOutTime: "12:00",
+  },
+];
+
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  const room = rooms.find((r) => r.id === Number.parseInt(params.id))
+  const room = rooms.find((r) => r.id === Number.parseInt(params.id));
 
   if (!room) {
     return {
       title: "Phòng không tồn tại - Khách sạn Quỳnh Oanh",
-    }
+    };
   }
 
   return {
     title: `${room.name} - Khách sạn Quỳnh Oanh`,
     description: room.description,
-  }
+  };
 }
 
 export default function RoomDetailPage({ params }: { params: { id: string } }) {
-  const room = rooms.find((r) => r.id === Number.parseInt(params.id))
+  const room = rooms.find((r) => r.id === Number.parseInt(params.id));
 
   if (!room) {
-    notFound()
+    notFound();
   }
 
   return (
     <main className="min-h-screen">
       <RoomDetails room={room} />
     </main>
-  )
+  );
 }

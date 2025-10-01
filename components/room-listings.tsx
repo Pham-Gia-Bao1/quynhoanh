@@ -23,7 +23,7 @@ import { format } from "date-fns";
 import { vi } from "date-fns/locale";
 import Link from "next/link";
 
-// Room data (unchanged)
+// Room data (Phong Nha Hotel, đơn giản - không bar, không bồn tắm, không spa)
 const rooms = [
   {
     id: 1,
@@ -32,7 +32,7 @@ const rooms = [
     originalPrice: 750000,
     image: "/elegant-hotel-room-with-modern-furniture-and-city-.jpg",
     description:
-      "Phòng tiêu chuẩn với đầy đủ tiện nghi hiện đại, thiết kế trang nhã và thoải mái.",
+      "Phòng tiêu chuẩn với thiết kế trang nhã, đầy đủ tiện nghi cơ bản. View núi thoáng mát, gần sông Son, phù hợp cho du khách nghỉ ngơi sau hành trình khám phá động Thiên Đường.",
     amenities: [
       "Wifi miễn phí",
       "Điều hòa",
@@ -54,13 +54,13 @@ const rooms = [
     originalPrice: 1050000,
     image: "/luxury-hotel-deluxe-room-with-balcony-and-premium-.jpg",
     description:
-      "Phòng cao cấp với ban công riêng, view đẹp và không gian rộng rãi hơn.",
+      "Phòng Deluxe có ban công riêng nhìn ra núi non hùng vĩ và sông Son thơ mộng. Không gian rộng rãi, thoáng đãng, mang lại trải nghiệm thư giãn tuyệt vời.",
     amenities: [
       "Wifi miễn phí",
-      "Ban công riêng",
-      "Bồn tắm",
-      "Dịch vụ phòng",
+      "Ban công riêng view núi/sông",
       "Máy pha cà phê",
+      "Điều hòa",
+      "TV màn hình phẳng",
     ],
     size: "35m²",
     maxGuests: 3,
@@ -76,13 +76,13 @@ const rooms = [
     originalPrice: 2100000,
     image: "/presidential-hotel-suite-with-living-area-and-prem.jpg",
     description:
-      "Suite sang trọng với phòng khách riêng biệt, phòng ngủ rộng và đầy đủ tiện ích cao cấp.",
+      "Suite rộng rãi với phòng khách riêng, view panorama nhìn ra núi đá vôi và sông Son. Lý tưởng cho du khách muốn tận hưởng sự riêng tư và thoải mái khi đến Phong Nha.",
     amenities: [
       "Phòng khách riêng",
-      "Jacuzzi",
-      "Butler service",
-      "View panorama",
+      "View toàn cảnh núi và sông",
       "Bếp nhỏ",
+      "Wifi miễn phí",
+      "Điều hòa",
     ],
     size: "60m²",
     maxGuests: 4,
@@ -98,7 +98,7 @@ const rooms = [
     originalPrice: 850000,
     image: "/elegant-hotel-room-with-modern-furniture-and-city-.jpg",
     description:
-      "Phòng Superior nâng cấp với không gian lớn hơn và thêm nhiều tiện ích.",
+      "Phòng Superior Plus rộng rãi hơn, có thêm bàn làm việc. Vẫn giữ được sự yên tĩnh của núi rừng Phong Nha, thích hợp cho cặp đôi hoặc khách công tác.",
     amenities: [
       "Wifi miễn phí",
       "Điều hòa",
@@ -111,7 +111,7 @@ const rooms = [
     bedType: "Giường đôi",
     rating: 4.6,
     reviews: 76,
-    available: false,
+    available: true,
   },
   {
     id: 5,
@@ -120,13 +120,13 @@ const rooms = [
     originalPrice: 1400000,
     image: "/luxury-hotel-deluxe-room-with-balcony-and-premium-.jpg",
     description:
-      "Phòng gia đình rộng rãi, phù hợp cho gia đình có trẻ em với 2 giường riêng biệt.",
+      "Phòng Family rộng rãi, có ban công nhìn ra núi và sông Son, phù hợp cho gia đình hoặc nhóm bạn muốn trải nghiệm thiên nhiên Phong Nha cùng nhau.",
     amenities: [
       "2 giường đôi",
       "Khu vực sinh hoạt",
       "Tủ lạnh lớn",
-      "Khu vực trẻ em",
-      "Ban công",
+      "Ban công view sông",
+      "Wifi miễn phí",
     ],
     size: "45m²",
     maxGuests: 6,
@@ -142,12 +142,12 @@ const rooms = [
     originalPrice: 1750000,
     image: "/presidential-hotel-suite-with-living-area-and-prem.jpg",
     description:
-      "Phòng dành cho doanh nhân với không gian làm việc riêng và dịch vụ cao cấp.",
+      "Phòng Executive dành cho khách công tác hoặc nghỉ dưỡng cao cấp, có không gian làm việc riêng và tầm nhìn ra núi sông hùng vĩ của Phong Nha.",
     amenities: [
-      "Phòng làm việc",
-      "Lounge access",
-      "Breakfast miễn phí",
-      "Late checkout",
+      "Phòng làm việc riêng",
+      "Wifi miễn phí",
+      "Bữa sáng miễn phí",
+      "Điều hòa",
       "Concierge",
     ],
     size: "40m²",
@@ -202,7 +202,10 @@ export function RoomListings() {
   // Close suggestions when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setIsSuggestionsOpen(false);
       }
     };
@@ -393,7 +396,7 @@ export function RoomListings() {
                   setIsSuggestionsOpen(false);
                 }}
               >
-                Clear All
+                Xóa tất cả
               </Button>
             </div>
 
@@ -470,11 +473,11 @@ export function RoomListings() {
                     <div className="text-2xl font-bold text-accent">
                       {room.price.toLocaleString("vi-VN")}₫
                     </div>
-                    <div className="text-sm text-muted-foreground">/đêm</div>
+                    <div className="text-sm text-muted-foreground">/Ngày</div>
                   </div>
                 </div>
 
-                <p className="text-muted-foreground mb-4 text-pretty">
+                <p className="text-muted-foreground mb-4 line-clamp-3">
                   {room.description}
                 </p>
 
@@ -519,12 +522,14 @@ export function RoomListings() {
                     </Link>
                   </Button>
                   {room.available && (
-                    <Button
-                      variant="outline"
-                      className="border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent"
-                    >
-                      Đặt ngay
-                    </Button>
+                    <a href="tel:0123456789">
+                      <Button
+                        variant="outline"
+                        className="border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent"
+                      >
+                        Đặt ngay
+                      </Button>
+                    </a>
                   )}
                 </div>
               </CardContent>
